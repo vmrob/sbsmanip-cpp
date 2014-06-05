@@ -18,7 +18,7 @@ TEST_SUITE("XmlDocument") {
 
 		boost::filesystem::ifstream f(sandbox);
 
-		CHECK_NO_EXCEPTION(XmlDocument::Load(f));
+		CHECK_NO_EXCEPTION(XmlDocument(f));
 	};
 
 };
