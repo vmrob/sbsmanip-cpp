@@ -1,0 +1,9 @@
+lib sbsmanip : [ glob src/*.cpp ] :
+	<link>static
+	<runtime-link>static
+: :
+	<link>static
+	<toolset>darwin:<cxxflags>"-std=c++11 -fcolor-diagnostics"
+;
+
+build-project unittests ;
