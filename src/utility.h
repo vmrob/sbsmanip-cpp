@@ -1,3 +1,5 @@
+#pragma once
+
 #include <memory>
 
 #ifndef HAS_MAKE_UNIQUE
