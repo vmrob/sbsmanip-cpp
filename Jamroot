@@ -1,9 +1,11 @@
-lib sbsmanip : [ glob src/*.cpp ] :
+lib sbsmanip : [ glob src/*.cpp deps/pugixml/src/*.cpp ] :
 	<link>static
 	<runtime-link>static
+	<include>deps/pugixml/src
 : :
 	<link>static
 	<toolset>darwin:<cxxflags>"-std=c++11 -fcolor-diagnostics"
+	<include>deps/pugixml/src
 ;
 
 build-project unittests ;
