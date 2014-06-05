@@ -1,5 +1,9 @@
-lib sbsmanip : [ glob src/*.cpp deps/pugixml/src/*.cpp ] :
+lib boost-system : : <file>deps/lib/libboost_system.a ;
+lib boost-filesystem : : <file>deps/lib/libboost_filesystem.a : : <library>boost-system ;
+
+lib sbsmanip : [ glob src/*.cpp deps/pugixml/src/*.cpp ] boost-filesystem :
 	<link>static
+	<toolset>darwin:<cxxflags>"-std=c++11 -fcolor-diagnostics"
 	<runtime-link>static
 	<include>deps/pugixml/src
 : :
