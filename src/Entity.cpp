@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "Entity.h"
 
 EntityType EntityTypeObjectBuilder(const char* objectBuilderStr) {
@@ -8,3 +10,7 @@ EntityType EntityTypeObjectBuilder(const char* objectBuilderStr) {
 	       !strcmp(objectBuilderStr, "MyObjectBuilder_Meteor")         ? kEntityTypeMeteor :
 	       kEntityTypeNone;
 }
+
+// EntityId Entity::Id(const pugi::xml_node& node) {
+	
+// }

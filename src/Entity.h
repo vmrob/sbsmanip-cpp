@@ -1,9 +1,5 @@
 #pragma once
 
-#include <limits>
-#include <cstring>
-#include <cstdint>
-
 enum EntityType : uint32_t {
 	kEntityTypeNone           = 0x0,
 	kEntityTypeCubeGrid       = 0x1,
@@ -25,3 +21,13 @@ constexpr const char* EntityTypeObjectBuilderStr(EntityType type) {
 }
 
 EntityType EntityTypeObjectBuilder(const char* objectBuilderStr);
+
+typedef std::string EntityId; // hashable/comparable value
+
+class Entity {
+public:
+	static EntityId Id(const pugi::xml_node& node);
+};
+
+typedef std::shared_ptr<const Entity> ConstEntityRef;
+typedef std::shared_ptr<Entity> EntityRef;

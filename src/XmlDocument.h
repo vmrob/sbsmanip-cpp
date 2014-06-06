@@ -1,9 +1,5 @@
 #pragma once
 
-#include <istream>
-#include <memory>
-#include <pugixml.hpp>
-
 #include "utility.h"
 
 class XmlDocument {

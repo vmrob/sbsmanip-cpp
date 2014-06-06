@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "XmlDocument.h"
 
 XmlDocument::XmlDocument(std::istream& stream) {

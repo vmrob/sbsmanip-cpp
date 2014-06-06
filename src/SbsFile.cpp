@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "SbsFile.h"
 
 Sector SbsFile::sector() {

@@ -3,6 +3,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
+#include "../src/pch.h"
 #include "../src/SbsFile.h"
 
 TEST_SUITE("Sector") {
@@ -32,6 +33,9 @@ TEST_SUITE("Sector") {
 		CHECK(sector.entityCount(kEntityTypeVoxelMap | kEntityTypeFloatingObject) == 82);
 
 		CHECK(sector.entityCount() == 102);
+
+		// Lambda predicates
+		CHECK(sector.entityCount([](auto e){ return true; }) == 102);
 	};
 
 };

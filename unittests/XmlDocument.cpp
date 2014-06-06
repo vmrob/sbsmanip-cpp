@@ -3,6 +3,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
+#include "../src/pch.h"
 #include "../src/XmlDocument.h"
 
 TEST_SUITE("XmlDocument") {
