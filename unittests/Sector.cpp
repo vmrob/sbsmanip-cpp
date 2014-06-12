@@ -6,18 +6,29 @@
 #include "../src/pch.h"
 #include "../src/SbsFile.h"
 
+static boost::filesystem::path gSupportDir("unittests/support");
+static boost::filesystem::path gSandboxSbs("unittests/support/SANDBOX_0_0_0_.sbs");
+static boost::filesystem::path gCubeBlocksSbc("unittests/support/CubeBlocks.sbc");
+static boost::filesystem::path gRespawnShipSbc("unittests/support/RespawnShip.sbc");
+
 TEST_SUITE("Sector") {
 
+	SETUP() {
+		CHECK_ESSENTIAL(boost::filesystem::exists(gSupportDir));
+		CHECK_ESSENTIAL(boost::filesystem::is_directory(gSupportDir));
+
+		CHECK_ESSENTIAL(boost::filesystem::exists(gSandboxSbs));
+		CHECK_ESSENTIAL(boost::filesystem::is_regular_file(gSandboxSbs));
+
+		CHECK_ESSENTIAL(boost::filesystem::exists(gCubeBlocksSbc));
+		CHECK_ESSENTIAL(boost::filesystem::is_regular_file(gCubeBlocksSbc));
+
+		CHECK_ESSENTIAL(boost::filesystem::exists(gRespawnShipSbc));
+		CHECK_ESSENTIAL(boost::filesystem::is_regular_file(gRespawnShipSbc));
+	};
+
 	TEST("EntityCount") {
-		boost::filesystem::path support("unittests/support");
-		CHECK_ESSENTIAL(boost::filesystem::exists(support));
-		CHECK_ESSENTIAL(boost::filesystem::is_directory(support));
-
-		auto sandbox = support / "SANDBOX_0_0_0_.sbs";
-		CHECK_ESSENTIAL(boost::filesystem::exists(sandbox));
-		CHECK_ESSENTIAL(boost::filesystem::is_regular_file(sandbox));
-
-		boost::filesystem::ifstream f(sandbox);
+		boost::filesystem::ifstream f(gSandboxSbs);
 
 		SbsFile sbs;
 		CHECK_NO_EXCEPTION(sbs = SbsFile(f));
@@ -35,7 +46,25 @@ TEST_SUITE("Sector") {
 		CHECK(sector.entityCount() == 102);
 
 		// Lambda predicates
-		CHECK(sector.entityCount([](auto e){ return true; }) == 102);
+		CHECK(sector.entityCount([](Entity e) { return true; }) == 102);
+		CHECK(sector.entityCount([](Entity e) { return e.type() == kEntityTypeCubeGrid; }) == 20);
+		CHECK(sector.entityCount([](Entity e) { return e.id() == -1585641296703617821; }) == 1);
+	};
+
+	TEST("Iterators") {
+		boost::filesystem::ifstream f(gSandboxSbs);
+
+		SbsFile sbs;
+		CHECK_NO_EXCEPTION(sbs = SbsFile(f));
+
+		// auto sector = sbs.sector();
+
+		// size_t count = 0;
+		// for (auto&& e : sector) {
+		// 	++count;
+		// }
+
+		// CHECK(count == 102);
 	};
 
 };

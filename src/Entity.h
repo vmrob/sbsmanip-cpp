@@ -22,11 +22,20 @@ constexpr const char* EntityTypeObjectBuilderStr(EntityType type) {
 
 EntityType EntityTypeObjectBuilder(const char* objectBuilderStr);
 
-typedef std::string EntityId; // hashable/comparable value
-
 class Entity {
 public:
-	static EntityId Id(const pugi::xml_node& node);
+	Entity(pugi::xml_node node = pugi::xml_node());
+
+	typedef int64_t Id;
+
+	// return value of 0 represents invalid stored id
+	Id id() const;
+	EntityType type() const;
+
+	inline bool operator==(const Entity& rhs) const { return id() == rhs.id(); }
+
+private:
+	pugi::xml_node _node;
 };
 
 typedef std::shared_ptr<const Entity> ConstEntityRef;

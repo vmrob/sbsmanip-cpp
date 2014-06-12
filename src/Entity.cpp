@@ -11,6 +11,22 @@ EntityType EntityTypeObjectBuilder(const char* objectBuilderStr) {
 	       kEntityTypeNone;
 }
 
-// EntityId Entity::Id(const pugi::xml_node& node) {
-	
-// }
+Entity::Entity(pugi::xml_node node)
+	: _node(node)
+{
+	// init only
+}
+
+Entity::Id Entity::id() const {
+	if (_node) {
+		return std::atoll(_node.child_value("EntityId"));	
+	}
+	return Id();
+}
+
+EntityType Entity::type() const {
+	if (_node) {
+		return EntityTypeObjectBuilder(_node.attribute("xsi:type").value());	
+	}
+	return kEntityTypeNone;
+}
