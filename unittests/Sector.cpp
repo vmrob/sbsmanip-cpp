@@ -92,9 +92,32 @@ TEST_SUITE("Sector") {
 		CHECK(sector.entityCount() == 102);
 		CHECK(sector.entityCount(kEntityTypeCubeGrid) == 20);
 
-		sector.erase(sector.begin([](Entity e) { return e.type() == kEntityTypeCubeGrid; }), sector.end());
+		sector.erase(sector.begin(kEntityTypeCubeGrid), sector.end());
 
 		CHECK(sector.entityCount() == 82);
+
+		auto it = sector.find(-1585641296703617821);
+		CHECK_ESSENTIAL(it != sector.end());
+
+		sector.erase(it);
+
+		CHECK(sector.entityCount() == 81);
+	};
+
+	TEST("Interesting tricks") {
+		boost::filesystem::ifstream f(gSandboxSbs);
+
+		SbsFile sbs;
+		CHECK_NO_EXCEPTION(sbs = SbsFile(f));
+
+		auto sector = sbs.sector();
+		
+		CHECK(sector.entityCount() == 102);
+		CHECK(sector.entityCount(kEntityTypeCubeGrid) == 20);
+
+		sector.erase(sector.begin(~kEntityTypeCubeGrid), sector.end());
+
+		CHECK(sector.entityCount() == 20);
 	};
 
 };

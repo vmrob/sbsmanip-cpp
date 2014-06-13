@@ -55,6 +55,7 @@ public:
 	Iterator end() const;
 
 	void erase(const Iterator first, const Iterator last);
+	void erase(const Iterator it);
 
 	Iterator find(Entity::Id id) const;
 
