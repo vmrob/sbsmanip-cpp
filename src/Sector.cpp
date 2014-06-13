@@ -9,31 +9,44 @@ Sector::Sector(pugi::xml_node sectorRoot)
 
 }
 
-size_t Sector::entityCount(int entityType) const {
-	size_t total = 0;
-	
-	// TODO: operate on Entity class, not pugi::xml_node
-	for (auto&& sectorObject : _sectorObjects.children("MyObjectBuilder_EntityBase")) {
-		if (entityType & Entity(sectorObject).type()) {
-			++total;
-		}
-	}
+#include <iostream>
 
-	return total;
-}
-
-Sector::Iterator::Iterator(Sector* sector, Entity entity, std::function<bool(const Entity&)> filter)
+Sector::Iterator::Iterator(const Sector* sector, Entity entity, std::function<bool(const Entity&)> filter)
 	: _filter(filter)
 	, _sector(sector)
 	, _entity(entity)
 {
-	// init only
+	if (!_filter(_entity)) {
+		increment();
+	}
 }
 
-// void Sector::Iterator::increment() {
+void Sector::Iterator::increment() {
+	do {
+		_entity = _entity.node().next_sibling();
+	} while (_entity.node() && !_filter(_entity));
+}
 
-// }
+void Sector::Iterator::decrement() {
+	do {
+		_entity = _entity.node().previous_sibling();
+	} while (_entity.node() && !_filter(_entity));
+}
 
-// void Sector::Iterator::decrement() {
+Sector::Iterator Sector::begin(std::function<bool(const Entity&)> filter) const {
+	return Iterator(this, _sectorObjects.first_child(), filter);
+};
 
-// }
+Sector::Iterator Sector::begin(int entityType) const {
+	return Iterator(this, _sectorObjects.first_child(), [=](Entity e) { return entityType & e.type(); });
+}
+
+Sector::Iterator Sector::end() const {
+	return Iterator(this, pugi::xml_node());
+};
+
+void Sector::erase(const Iterator first, const Iterator last) {
+	for (auto it = first; it != last; ++it) {
+		_sectorObjects.remove_child(it->node());
+	}
+}

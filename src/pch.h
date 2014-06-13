@@ -13,5 +13,6 @@
 
 #include <boost/call_traits.hpp>
 #include <boost/iterator/iterator_facade.hpp>
+#include <boost/operators.hpp>
 
 #endif // SBSMANIP_PCH_H

@@ -57,14 +57,28 @@ TEST_SUITE("Sector") {
 		SbsFile sbs;
 		CHECK_NO_EXCEPTION(sbs = SbsFile(f));
 
-		// auto sector = sbs.sector();
+		auto sector = sbs.sector();
 
-		// size_t count = 0;
-		// for (auto&& e : sector) {
-		// 	++count;
-		// }
+		CHECK(std::distance(sector.begin(), sector.end()) == 102);
+		CHECK(std::distance(sector.begin([](Entity e) { return e.type() == kEntityTypeCubeGrid; }), sector.end()) == 20);
+		CHECK(std::distance(sector.begin(kEntityTypeCubeGrid), sector.end()) == 20);
+		CHECK(std::distance(sector.begin(kEntityTypeCubeGrid | kEntityTypeVoxelMap), sector.end()) == 92);
+	};
 
-		// CHECK(count == 102);
+	TEST("Erase") {
+		boost::filesystem::ifstream f(gSandboxSbs);
+
+		SbsFile sbs;
+		CHECK_NO_EXCEPTION(sbs = SbsFile(f));
+
+		auto sector = sbs.sector();
+		
+		CHECK(sector.entityCount() == 102);
+		CHECK(sector.entityCount(kEntityTypeCubeGrid) == 20);
+
+		sector.erase(sector.begin([](Entity e) { return e.type() == kEntityTypeCubeGrid; }), sector.end());
+
+		CHECK(sector.entityCount() == 82);
 	};
 
 };

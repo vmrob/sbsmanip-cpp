@@ -22,7 +22,7 @@ constexpr const char* EntityTypeObjectBuilderStr(EntityType type) {
 
 EntityType EntityTypeObjectBuilder(const char* objectBuilderStr);
 
-class Entity {
+class Entity : public boost::totally_ordered<Entity> {
 public:
 	Entity(pugi::xml_node node = pugi::xml_node());
 
@@ -33,7 +33,9 @@ public:
 	EntityType type() const;
 
 	inline bool operator==(const Entity& rhs) const { return id() == rhs.id(); }
+	inline bool operator< (const Entity& rhs) const { return id() <  rhs.id(); }
 
+	pugi::xml_node node() const { return _node; }
 private:
 	pugi::xml_node _node;
 };
