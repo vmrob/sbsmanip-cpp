@@ -51,6 +51,22 @@ TEST_SUITE("Sector") {
 		CHECK(sector.entityCount([](Entity e) { return e.id() == -1585641296703617821; }) == 1);
 	};
 
+	TEST("Find") {
+		boost::filesystem::ifstream f(gSandboxSbs);
+
+		SbsFile sbs;
+		CHECK_NO_EXCEPTION(sbs = SbsFile(f));
+
+		auto sector = sbs.sector();
+
+		auto it = sector.find(-1585641296703617821);
+
+		CHECK_ESSENTIAL(it != sector.end());
+
+		CHECK(it->id() == -1585641296703617821);
+		CHECK(it->type() == kEntityTypeVoxelMap);
+	};
+
 	TEST("Iterators") {
 		boost::filesystem::ifstream f(gSandboxSbs);
 

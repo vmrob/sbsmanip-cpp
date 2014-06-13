@@ -50,3 +50,12 @@ void Sector::erase(const Iterator first, const Iterator last) {
 		_sectorObjects.remove_child(it->node());
 	}
 }
+
+Sector::Iterator Sector::find(Entity::Id id) const {
+	for (auto it = begin(); it != end(); ++it) {
+		if (it->id() == id) {
+			return it;
+		}
+	}
+	return end();
+}

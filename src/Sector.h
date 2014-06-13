@@ -56,6 +56,8 @@ public:
 
 	void erase(const Iterator first, const Iterator last);
 
+	Iterator find(Entity::Id id) const;
+
 private:
 	pugi::xml_node _sectorRoot;
 	pugi::xml_node _sectorObjects;
