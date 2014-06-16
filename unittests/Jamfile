@@ -1,5 +1,10 @@
 using testing ;
 
-exe unittests : [ glob *.cpp ] ..//sbsmanip ../deps/tinytest//tinytest ;
+lib boost-system : : <name>boost_system ;
+lib boost-filesystem : : <name>boost_filesystem : : <library>boost-system ;
+
+exe unittests : [ glob *.cpp ] ..//sbsmanip ../deps/tinytest//tinytest :
+	<library>boost-filesystem
+;
 
 unit-test tests : unittests ;

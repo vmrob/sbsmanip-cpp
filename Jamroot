@@ -1,6 +1,3 @@
-lib boost-system : : <file>deps/lib/libboost_system.a ;
-lib boost-filesystem : : <file>deps/lib/libboost_filesystem.a : : <library>boost-system ;
-
 lib pugixml : [ glob deps/pugixml/src/*.cpp ] :
 	<link>static
 	<toolset>darwin:<cxxflags>"-std=c++1y -fcolor-diagnostics"
@@ -14,17 +11,17 @@ cpp-pch pch : src/pch.h :
 	<toolset>darwin:<cxxflags>"-std=c++1y -fcolor-diagnostics"
 	<toolset>darwin:<define>HAS_MAKE_UNIQUE
 : :
+	<library>pugixml
 	<toolset>darwin:<cxxflags>"-std=c++1y -fcolor-diagnostics"
 	<toolset>darwin:<define>HAS_MAKE_UNIQUE
-	<library>boost-filesystem
-	<library>pugixml
 ;
 
 lib sbsmanip : [ glob src/*.cpp ] pch :
 	<link>static
 	<runtime-link>static
-: :
+:
 	<link>static
+	<runtime-link>static
 ;
 
 build-project unittests ;

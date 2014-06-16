@@ -1,9 +1,6 @@
 [submodule "deps/tinytest"]
 	path = deps/tinytest
 	url = https://github.com/acronism/tinytest.git
-[submodule "deps/boost"]
-	path = deps/boost
-	url = https://github.com/boostorg/boost.git
 [submodule "deps/pugixml"]
 	path = deps/pugixml
 	url = https://github.com/zeux/pugixml.git
