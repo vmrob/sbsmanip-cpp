@@ -49,4 +49,8 @@ std::vector<std::string> Entity::beacons() const {
 	return {}; // TODO
 }
 
+uint64_t Entity::owner() const {
+	return 76561198019075550; // TODO: temp
+}
+
 } // namespace sbsmanip

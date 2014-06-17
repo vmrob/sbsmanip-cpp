@@ -39,6 +39,8 @@ public:
 	double yPosition() const;
 	double zPosition() const;
 
+	uint64_t owner() const;
+
 	std::vector<std::string> beacons() const;
 
 	inline bool operator==(const Entity& rhs) const { return id() == rhs.id(); }

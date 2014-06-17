@@ -42,6 +42,10 @@ namespace detail {
 
 			std::string error = response.root().child("response").child_value("error");
 			if (!error.empty()) {
+				{
+					std::lock_guard<std::mutex> lock(_gSteamIdsMutex);
+					_gSteamIds[id] = "[invalid id]";
+				}
 				throw std::runtime_error(error);
 			}
 			username = response.root().child("profile").child_value("steamID");
