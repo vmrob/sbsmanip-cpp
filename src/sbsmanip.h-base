@@ -1,0 +1,8 @@
+#pragma once
+
+// Use generate-convenience-header.py in root to generate sbsmanip.h
+
+#include "pch.h"
+
+// BEGIN GENERATED CONTENT
+// END GENERATED CONTENT

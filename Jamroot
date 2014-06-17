@@ -22,6 +22,25 @@ lib sbsmanip : [ glob src/*.cpp ] pch :
 :
 	<link>static
 	<runtime-link>static
+	<include>include
 ;
 
 build-project unittests ;
+
+actions convenience-header {
+	python generate-convenience-header.py
+}
+
+# TODO: use a generation rule instead of the notfile
+
+import notfile ;
+notfile sbsmanip-h : @convenience-header ;
+explicit sbsmanip-h ;
+
+install sbsmanip-includes : [ glob src/*.h : src/sbsmanip.h-base ] :
+	<location>include/sbsmanip
+	<dependency>sbsmanip-h
+;
+install sbsmanip-lib : sbsmanip : <location>lib ;
+
+INCLUDES sbsmanip : sbsmanip-h sbsmanip-includes ;
