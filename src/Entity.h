@@ -32,11 +32,15 @@ public:
 
 	// return value of 0 represents invalid stored id
 	Id id() const;
+
 	EntityType type() const;
 
 	double xPosition() const;
 	double yPosition() const;
 	double zPosition() const;
+
+	std::vector<std::string> beacons() const;
+
 
 	inline bool operator==(const Entity& rhs) const { return id() == rhs.id(); }
 	inline bool operator< (const Entity& rhs) const { return id() <  rhs.id(); }

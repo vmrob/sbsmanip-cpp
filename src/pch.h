@@ -7,6 +7,7 @@
 #include <limits>
 #include <memory>
 #include <type_traits>
+#include <vector>
 #include <unordered_map>
 
 #include <pugixml.hpp>
