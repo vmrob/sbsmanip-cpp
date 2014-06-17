@@ -1,25 +1,23 @@
-path-constant TOP : . ;
-
 lib pugixml : [ glob deps/pugixml/src/*.cpp ] :
 	<link>static
 	<toolset>darwin:<cxxflags>"-std=c++1y -fcolor-diagnostics"
 	<runtime-link>static
 : :
-	<include>$(TOP)/deps/pugixml/src
+	<include>deps/pugixml/src
 ;
 
 lib curl ;
 
 lib curlpp-utils : :
-	<file>$(TOP)/deps/lib/libutilspp.a
+	<file>deps/lib/libutilspp.a
 : :
-	<include>$(TOP)/deps/include
+	<include>deps/include
 ;
 
 lib curlpp : :
-	<file>$(TOP)/deps/lib/libcurlpp.a
+	<file>deps/lib/libcurlpp.a
 : :
-	<include>$(TOP)/deps/include
+	<include>deps/include
 	<library>curlpp-utils
 	<library>curl
 ;
@@ -43,8 +41,10 @@ lib sbsmanip : [ glob src/*.cpp ] pch :
 	<link>static
 	<runtime-link>static
 :
-	<include>$(TOP)/src
+	<include>src
 ;
+
+path-constant TOP : . ;
 
 actions convenience-header {
 	$(TOP)/generate-convenience-header.py
