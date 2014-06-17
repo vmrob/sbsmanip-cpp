@@ -22,6 +22,7 @@ lib sbsmanip : [ glob src/*.cpp ] pch :
 :
 	<link>static
 	<runtime-link>static
+:
 	<include>include
 ;
 
@@ -43,4 +44,4 @@ install sbsmanip-includes : [ glob src/*.h : src/sbsmanip.h-base ] :
 ;
 install sbsmanip-lib : sbsmanip : <location>lib ;
 
-INCLUDES sbsmanip : sbsmanip-h sbsmanip-includes ;
+DEPENDS sbsmanip : sbsmanip-h sbsmanip-includes ;

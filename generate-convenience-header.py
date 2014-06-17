@@ -24,7 +24,7 @@ with open(os.path.join(src_dir, header_source), 'r') as f:
         content += line
         if line.endswith('BEGIN GENERATED CONTENT\n'):
             for h in headers:
-                content += '#include "detail/%s"\n' % h
+                content += '#include "%s"\n' % h
 
 with open(os.path.join(src_dir, header_name), 'w') as f:
     f.write(content)
