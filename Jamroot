@@ -26,10 +26,10 @@ lib sbsmanip : [ glob src/*.cpp ] pch :
 	<include>include
 ;
 
-build-project unittests ;
+path-constant TOP : . ;
 
 actions convenience-header {
-	python generate-convenience-header.py
+	$(TOP)/generate-convenience-header.py
 }
 
 # TODO: use a generation rule instead of the notfile
@@ -40,8 +40,8 @@ explicit sbsmanip-h ;
 
 install sbsmanip-includes : [ glob src/*.h : src/sbsmanip.h-base ] :
 	<location>include/sbsmanip
-	<dependency>sbsmanip-h
 ;
 install sbsmanip-lib : sbsmanip : <location>lib ;
 
 DEPENDS sbsmanip : sbsmanip-h sbsmanip-includes ;
+DEPENDS sbsmanip-includes : sbsmanip-h ;
