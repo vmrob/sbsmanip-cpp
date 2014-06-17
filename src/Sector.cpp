@@ -2,14 +2,14 @@
 
 #include "Sector.h"
 
+namespace sbsmanip {
+
 Sector::Sector(pugi::xml_node sectorRoot)
 	: _sectorRoot(sectorRoot)
 	, _sectorObjects(_sectorRoot.child("SectorObjects"))
 {
 
 }
-
-#include <iostream>
 
 Sector::Iterator::Iterator(const Sector* sector, Entity entity, std::function<bool(const Entity&)> filter)
 	: _filter(filter)
@@ -63,3 +63,5 @@ Sector::Iterator Sector::find(Entity::Id id) const {
 	}
 	return end();
 }
+
+} // namespace sbsmanip

@@ -19,7 +19,7 @@ TEST_SUITE("XmlDocument") {
 
 		boost::filesystem::ifstream f(sandbox);
 
-		CHECK_NO_EXCEPTION(XmlDocument(f));
+		CHECK_NO_EXCEPTION(sbsmanip::XmlDocument(f));
 	};
 
 };

@@ -1,5 +1,7 @@
 #pragma once
 
+namespace sbsmanip {
+
 enum EntityType : uint32_t {
 	kEntityTypeNone           = 0x0,
 	kEntityTypeCubeGrid       = 0x1,
@@ -42,3 +44,5 @@ private:
 
 typedef std::shared_ptr<const Entity> ConstEntityRef;
 typedef std::shared_ptr<Entity> EntityRef;
+
+} // namespace sbsmanip

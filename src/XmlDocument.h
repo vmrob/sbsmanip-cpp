@@ -2,6 +2,8 @@
 
 #include "utility.h"
 
+namespace sbsmanip {
+
 class XmlDocument {
 public:
 	XmlDocument() = default;
@@ -14,3 +16,5 @@ protected:
 private:
 	std::unique_ptr<pugi::xml_document> _xml = std::make_unique<pugi::xml_document>();
 };
+
+} // namespace sbsmanip

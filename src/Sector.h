@@ -2,6 +2,8 @@
 
 #include "Entity.h"
 
+namespace sbsmanip {
+
 class Sector {
 public:
 	Sector(pugi::xml_node sectorRoot);
@@ -63,3 +65,5 @@ private:
 	pugi::xml_node _sectorRoot;
 	pugi::xml_node _sectorObjects;
 };
+
+} // namespace sbsmanip

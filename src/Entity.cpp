@@ -2,6 +2,8 @@
 
 #include "Entity.h"
 
+namespace sbsmanip {
+
 EntityType EntityTypeObjectBuilder(const char* objectBuilderStr) {
 	return !strcmp(objectBuilderStr, "MyObjectBuilder_CubeGrid")       ? kEntityTypeCubeGrid :
 	       !strcmp(objectBuilderStr, "MyObjectBuilder_VoxelMap")       ? kEntityTypeVoxelMap :
@@ -30,3 +32,5 @@ EntityType Entity::type() const {
 	}
 	return kEntityTypeNone;
 }
+
+} // namespace sbsmanip
