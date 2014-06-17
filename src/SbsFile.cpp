@@ -5,7 +5,7 @@
 namespace sbsmanip {
 
 Sector SbsFile::sector() {
-	return _root().child("MyObjectBuilder_Sector");
+	return root().child("MyObjectBuilder_Sector");
 }
 
 } // namespace sbsmanip

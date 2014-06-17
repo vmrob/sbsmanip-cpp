@@ -41,7 +41,6 @@ public:
 
 	std::vector<std::string> beacons() const;
 
-
 	inline bool operator==(const Entity& rhs) const { return id() == rhs.id(); }
 	inline bool operator< (const Entity& rhs) const { return id() <  rhs.id(); }
 
