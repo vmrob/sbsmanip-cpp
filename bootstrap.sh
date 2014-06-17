@@ -7,4 +7,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 	./configure --prefix="$DIR/deps"
 	make all CXXFLAGS="-Wno-unused-function"
+	make install
 )
