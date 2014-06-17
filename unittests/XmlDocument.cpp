@@ -3,7 +3,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
-#include "sbsmanip/sbsmanip.h"
+#include "sbsmanip.h"
 
 TEST_SUITE("XmlDocument") {
 

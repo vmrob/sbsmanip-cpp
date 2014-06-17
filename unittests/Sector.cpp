@@ -3,7 +3,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
-#include "sbsmanip/sbsmanip.h"
+#include "sbsmanip.h"
 
 static boost::filesystem::path gSupportDir("unittests/support");
 static boost::filesystem::path gSandboxSbs("unittests/support/SANDBOX_0_0_0_.sbs");
