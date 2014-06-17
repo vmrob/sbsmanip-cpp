@@ -34,10 +34,16 @@ public:
 	Id id() const;
 	EntityType type() const;
 
+	double xPosition() const;
+	double yPosition() const;
+	double zPosition() const;
+
 	inline bool operator==(const Entity& rhs) const { return id() == rhs.id(); }
 	inline bool operator< (const Entity& rhs) const { return id() <  rhs.id(); }
 
 	pugi::xml_node node() const { return _node; }
+
+
 private:
 	pugi::xml_node _node;
 };

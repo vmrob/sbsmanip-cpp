@@ -33,4 +33,16 @@ EntityType Entity::type() const {
 	return kEntityTypeNone;
 }
 
+double Entity::xPosition() const {
+	return _node.child("PositionAndOrientation").child("Position").attribute("x").as_double();
+}
+
+double Entity::yPosition() const {
+	return _node.child("PositionAndOrientation").child("Position").attribute("y").as_double();
+}
+
+double Entity::zPosition() const {
+	return _node.child("PositionAndOrientation").child("Position").attribute("z").as_double();
+}
+
 } // namespace sbsmanip
